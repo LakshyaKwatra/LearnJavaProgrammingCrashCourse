@@ -5,9 +5,9 @@ import java.util.*;
 
 public class Main {
 
-    private static final int ROCK = 0;
-    private static final int PAPER = 1;
-    private static final int SCISSORS = 2;
+    private static final int ROCK = 0; //beats Scissors -> ROCK = (SCISSORS + 1) % 3
+    private static final int PAPER = 1; //beats Rock -> PAPER = (ROCK + 1) % 3
+    private static final int SCISSORS = 2; //beats Paper -> SCISSORS = (PAPER + 1) % 3
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
@@ -34,20 +34,12 @@ public class Main {
             }
 
             System.out.println("Computer's move: " + moves.get(computerValue));
-            if (Math.abs(playerValue - computerValue) == 1) {
-                if (playerValue > computerValue) {
-                    System.out.println("You Win!");
-                } else {
-                    System.out.println("You Lose!");
-                }
-            } else if (Math.abs(playerValue - computerValue) == 2) {
-                if (playerValue > computerValue) {
-                    System.out.println("You Lose!");
-                } else {
-                    System.out.println("You Win!");
-                }
-            } else {
+            if(playerValue == computerValue){
                 System.out.println("Draw!");
+            } else if(playerValue == (computerValue + 1) % 3){
+                System.out.println("You Win!");
+            } else{
+                System.out.println("Computer Wins!");
             }
 
             System.out.printf("Play again? (y/n): ");
